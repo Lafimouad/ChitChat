@@ -1,0 +1,937 @@
+define(['dart_sdk', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter_cache_manager/src/web/web_helper.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter_cache_manager/src/result/download_progress.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter_cache_manager/src/result/file_info.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/scheduler/ticker.dart', 'packages/flutter_cache_manager/src/result/file_response.dart', 'packages/flutter/src/widgets/async.dart', 'packages/flutter/src/foundation/key.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__cached_network_image__src__cached_image_widget_dart(dart_sdk, packages__flutter__src__animation__curves$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter_cache_manager__src__web__web_helper$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter_cache_manager__src__result__download_progress$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter_cache_manager__src__result__file_info$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__scheduler__ticker$46dart, packages__flutter_cache_manager__src__result__file_response$46dart, packages__flutter__src__widgets__async$46dart, packages__flutter__src__foundation__key$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const cache_manager = packages__flutter_cache_manager__src__web__web_helper$46dart.src__cache_manager;
+  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
+  const download_progress = packages__flutter_cache_manager__src__result__download_progress$46dart.src__result__download_progress;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const file_info = packages__flutter_cache_manager__src__result__file_info$46dart.src__result__file_info;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const ticker = packages__flutter__src__scheduler__ticker$46dart.src__scheduler__ticker;
+  const file_response = packages__flutter_cache_manager__src__result__file_response$46dart.src__result__file_response;
+  const async$ = packages__flutter__src__widgets__async$46dart.src__widgets__async;
+  const key = packages__flutter__src__foundation__key$46dart.src__foundation__key;
+  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
+  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
+  var cached_image_widget = Object.create(dart.library);
+  var $clear = dartx.clear;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $last = dartx.last;
+  var $removeLast = dartx.removeLast;
+  var $remove = dartx.remove;
+  var $add = dartx.add;
+  var $isEmpty = dartx.isEmpty;
+  var $toList = dartx.toList;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _ImageTransitionHolderL: () => (T._ImageTransitionHolderL = dart.constFn(dart.legacy(cached_image_widget._ImageTransitionHolder)))(),
+    JSArrayOf_ImageTransitionHolderL: () => (T.JSArrayOf_ImageTransitionHolderL = dart.constFn(_interceptors.JSArray$(T._ImageTransitionHolderL())))(),
+    CachedNetworkImageL: () => (T.CachedNetworkImageL = dart.constFn(dart.legacy(cached_image_widget.CachedNetworkImage)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    dynamicToboolL: () => (T.dynamicToboolL = dart.constFn(dart.fnType(T.boolL(), [dart.dynamic])))(),
+    FileInfoL: () => (T.FileInfoL = dart.constFn(dart.legacy(file_info.FileInfo)))(),
+    FileResponseL: () => (T.FileResponseL = dart.constFn(dart.legacy(file_response.FileResponse)))(),
+    FileResponseLToboolL: () => (T.FileResponseLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.FileResponseL()])))(),
+    voidToNull: () => (T.voidToNull = dart.constFn(dart.fnType(core.Null, [dart.void])))(),
+    StreamBuilderOfFileResponseL: () => (T.StreamBuilderOfFileResponseL = dart.constFn(async$.StreamBuilder$(T.FileResponseL())))(),
+    DownloadProgressL: () => (T.DownloadProgressL = dart.constFn(dart.legacy(download_progress.DownloadProgress)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    ValueKeyOfString: () => (T.ValueKeyOfString = dart.constFn(key.ValueKey$(core.String)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    StackL: () => (T.StackL = dart.constFn(dart.legacy(basic.Stack)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    AsyncSnapshotOfFileResponseL: () => (T.AsyncSnapshotOfFileResponseL = dart.constFn(async$.AsyncSnapshot$(T.FileResponseL())))(),
+    AsyncSnapshotLOfFileResponseL: () => (T.AsyncSnapshotLOfFileResponseL = dart.constFn(dart.legacy(T.AsyncSnapshotOfFileResponseL())))(),
+    BuildContextLAndAsyncSnapshotLOfFileResponseLToStackL: () => (T.BuildContextLAndAsyncSnapshotLOfFileResponseLToStackL = dart.constFn(dart.fnType(T.StackL(), [T.BuildContextL(), T.AsyncSnapshotLOfFileResponseL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 1000000
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.58,
+        [Cubic_b]: 0,
+        [Cubic_a]: 0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 500000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 1,
+        [Cubic_b]: 0,
+        [Cubic_a]: 0.42
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 0,
+        [Alignment_x]: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: decoration_image.ImageRepeat.prototype,
+        [_name]: "ImageRepeat.noRepeat",
+        index: 3
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ui.FilterQuality.prototype,
+        [_name$]: "FilterQuality.low",
+        index: 1
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 19,
+        [_Location_line]: 377,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 378,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 376,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 11,
+        [_Location_line]: 387,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 11,
+        [_Location_line]: 388,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 389,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 386,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 7,
+        [_Location_line]: 316,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialData",
+        [_Location_column]: 7,
+        [_Location_line]: 317,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 7,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 319,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 315,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 7,
+        [_Location_line]: 397,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 399,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 396,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "image",
+        [_Location_column]: 13,
+        [_Location_line]: 411,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 13,
+        [_Location_line]: 412,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 413,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 414,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 13,
+        [_Location_line]: 415,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "repeat",
+        [_Location_column]: 13,
+        [_Location_line]: 416,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 417,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "colorBlendMode",
+        [_Location_column]: 13,
+        [_Location_line]: 418,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "matchTextDirection",
+        [_Location_column]: 13,
+        [_Location_line]: 419,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "filterQuality",
+        [_Location_column]: 13,
+        [_Location_line]: 420,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 410,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 428,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 429,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 427,
+        [_Location_file]: "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart"
+      });
+    }
+  }, false);
+  var C = Array(42).fill(void 0);
+  var I = [
+    "file:///C:/Users/mouad/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-2.2.0+1/lib/src/cached_image_widget.dart",
+    "package:cached_network_image/src/cached_image_widget.dart"
+  ];
+  var cacheManager$ = dart.privateName(cached_image_widget, "CachedNetworkImage.cacheManager");
+  var imageUrl$ = dart.privateName(cached_image_widget, "CachedNetworkImage.imageUrl");
+  var imageBuilder$ = dart.privateName(cached_image_widget, "CachedNetworkImage.imageBuilder");
+  var placeholder$ = dart.privateName(cached_image_widget, "CachedNetworkImage.placeholder");
+  var progressIndicatorBuilder$ = dart.privateName(cached_image_widget, "CachedNetworkImage.progressIndicatorBuilder");
+  var errorWidget$ = dart.privateName(cached_image_widget, "CachedNetworkImage.errorWidget");
+  var placeholderFadeInDuration$ = dart.privateName(cached_image_widget, "CachedNetworkImage.placeholderFadeInDuration");
+  var fadeOutDuration$ = dart.privateName(cached_image_widget, "CachedNetworkImage.fadeOutDuration");
+  var fadeOutCurve$ = dart.privateName(cached_image_widget, "CachedNetworkImage.fadeOutCurve");
+  var fadeInDuration$ = dart.privateName(cached_image_widget, "CachedNetworkImage.fadeInDuration");
+  var fadeInCurve$ = dart.privateName(cached_image_widget, "CachedNetworkImage.fadeInCurve");
+  var width$ = dart.privateName(cached_image_widget, "CachedNetworkImage.width");
+  var height$ = dart.privateName(cached_image_widget, "CachedNetworkImage.height");
+  var fit$ = dart.privateName(cached_image_widget, "CachedNetworkImage.fit");
+  var alignment$ = dart.privateName(cached_image_widget, "CachedNetworkImage.alignment");
+  var repeat$ = dart.privateName(cached_image_widget, "CachedNetworkImage.repeat");
+  var matchTextDirection$ = dart.privateName(cached_image_widget, "CachedNetworkImage.matchTextDirection");
+  var httpHeaders$ = dart.privateName(cached_image_widget, "CachedNetworkImage.httpHeaders");
+  var useOldImageOnUrlChange$ = dart.privateName(cached_image_widget, "CachedNetworkImage.useOldImageOnUrlChange");
+  var color$ = dart.privateName(cached_image_widget, "CachedNetworkImage.color");
+  var colorBlendMode$ = dart.privateName(cached_image_widget, "CachedNetworkImage.colorBlendMode");
+  var filterQuality$ = dart.privateName(cached_image_widget, "CachedNetworkImage.filterQuality");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  var Alignment_y = dart.privateName(alignment, "Alignment.y");
+  var Alignment_x = dart.privateName(alignment, "Alignment.x");
+  var _name = dart.privateName(decoration_image, "_name");
+  var _name$ = dart.privateName(ui, "_name");
+  cached_image_widget.CachedNetworkImage = class CachedNetworkImage extends framework.StatefulWidget {
+    get cacheManager() {
+      return this[cacheManager$];
+    }
+    set cacheManager(value) {
+      super.cacheManager = value;
+    }
+    get imageUrl() {
+      return this[imageUrl$];
+    }
+    set imageUrl(value) {
+      super.imageUrl = value;
+    }
+    get imageBuilder() {
+      return this[imageBuilder$];
+    }
+    set imageBuilder(value) {
+      super.imageBuilder = value;
+    }
+    get placeholder() {
+      return this[placeholder$];
+    }
+    set placeholder(value) {
+      super.placeholder = value;
+    }
+    get progressIndicatorBuilder() {
+      return this[progressIndicatorBuilder$];
+    }
+    set progressIndicatorBuilder(value) {
+      super.progressIndicatorBuilder = value;
+    }
+    get errorWidget() {
+      return this[errorWidget$];
+    }
+    set errorWidget(value) {
+      super.errorWidget = value;
+    }
+    get placeholderFadeInDuration() {
+      return this[placeholderFadeInDuration$];
+    }
+    set placeholderFadeInDuration(value) {
+      super.placeholderFadeInDuration = value;
+    }
+    get fadeOutDuration() {
+      return this[fadeOutDuration$];
+    }
+    set fadeOutDuration(value) {
+      super.fadeOutDuration = value;
+    }
+    get fadeOutCurve() {
+      return this[fadeOutCurve$];
+    }
+    set fadeOutCurve(value) {
+      super.fadeOutCurve = value;
+    }
+    get fadeInDuration() {
+      return this[fadeInDuration$];
+    }
+    set fadeInDuration(value) {
+      super.fadeInDuration = value;
+    }
+    get fadeInCurve() {
+      return this[fadeInCurve$];
+    }
+    set fadeInCurve(value) {
+      super.fadeInCurve = value;
+    }
+    get width() {
+      return this[width$];
+    }
+    set width(value) {
+      super.width = value;
+    }
+    get height() {
+      return this[height$];
+    }
+    set height(value) {
+      super.height = value;
+    }
+    get fit() {
+      return this[fit$];
+    }
+    set fit(value) {
+      super.fit = value;
+    }
+    get alignment() {
+      return this[alignment$];
+    }
+    set alignment(value) {
+      super.alignment = value;
+    }
+    get repeat() {
+      return this[repeat$];
+    }
+    set repeat(value) {
+      super.repeat = value;
+    }
+    get matchTextDirection() {
+      return this[matchTextDirection$];
+    }
+    set matchTextDirection(value) {
+      super.matchTextDirection = value;
+    }
+    get httpHeaders() {
+      return this[httpHeaders$];
+    }
+    set httpHeaders(value) {
+      super.httpHeaders = value;
+    }
+    get useOldImageOnUrlChange() {
+      return this[useOldImageOnUrlChange$];
+    }
+    set useOldImageOnUrlChange(value) {
+      super.useOldImageOnUrlChange = value;
+    }
+    get color() {
+      return this[color$];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get colorBlendMode() {
+      return this[colorBlendMode$];
+    }
+    set colorBlendMode(value) {
+      super.colorBlendMode = value;
+    }
+    get filterQuality() {
+      return this[filterQuality$];
+    }
+    set filterQuality(value) {
+      super.filterQuality = value;
+    }
+    createState() {
+      return new cached_image_widget.CachedNetworkImageState.new();
+    }
+  };
+  (cached_image_widget.CachedNetworkImage.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let imageUrl = opts && 'imageUrl' in opts ? opts.imageUrl : null;
+    let imageBuilder = opts && 'imageBuilder' in opts ? opts.imageBuilder : null;
+    let placeholder = opts && 'placeholder' in opts ? opts.placeholder : null;
+    let progressIndicatorBuilder = opts && 'progressIndicatorBuilder' in opts ? opts.progressIndicatorBuilder : null;
+    let errorWidget = opts && 'errorWidget' in opts ? opts.errorWidget : null;
+    let fadeOutDuration = opts && 'fadeOutDuration' in opts ? opts.fadeOutDuration : C[0] || CT.C0;
+    let fadeOutCurve = opts && 'fadeOutCurve' in opts ? opts.fadeOutCurve : C[1] || CT.C1;
+    let fadeInDuration = opts && 'fadeInDuration' in opts ? opts.fadeInDuration : C[2] || CT.C2;
+    let fadeInCurve = opts && 'fadeInCurve' in opts ? opts.fadeInCurve : C[3] || CT.C3;
+    let width = opts && 'width' in opts ? opts.width : null;
+    let height = opts && 'height' in opts ? opts.height : null;
+    let fit = opts && 'fit' in opts ? opts.fit : null;
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[4] || CT.C4;
+    let repeat = opts && 'repeat' in opts ? opts.repeat : C[5] || CT.C5;
+    let matchTextDirection = opts && 'matchTextDirection' in opts ? opts.matchTextDirection : false;
+    let httpHeaders = opts && 'httpHeaders' in opts ? opts.httpHeaders : null;
+    let cacheManager = opts && 'cacheManager' in opts ? opts.cacheManager : null;
+    let useOldImageOnUrlChange = opts && 'useOldImageOnUrlChange' in opts ? opts.useOldImageOnUrlChange : false;
+    let color = opts && 'color' in opts ? opts.color : null;
+    let filterQuality = opts && 'filterQuality' in opts ? opts.filterQuality : C[6] || CT.C6;
+    let colorBlendMode = opts && 'colorBlendMode' in opts ? opts.colorBlendMode : null;
+    let placeholderFadeInDuration = opts && 'placeholderFadeInDuration' in opts ? opts.placeholderFadeInDuration : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[imageUrl$] = imageUrl;
+    this[imageBuilder$] = imageBuilder;
+    this[placeholder$] = placeholder;
+    this[progressIndicatorBuilder$] = progressIndicatorBuilder;
+    this[errorWidget$] = errorWidget;
+    this[fadeOutDuration$] = fadeOutDuration;
+    this[fadeOutCurve$] = fadeOutCurve;
+    this[fadeInDuration$] = fadeInDuration;
+    this[fadeInCurve$] = fadeInCurve;
+    this[width$] = width;
+    this[height$] = height;
+    this[fit$] = fit;
+    this[alignment$] = alignment;
+    this[repeat$] = repeat;
+    this[matchTextDirection$] = matchTextDirection;
+    this[httpHeaders$] = httpHeaders;
+    this[cacheManager$] = cacheManager;
+    this[useOldImageOnUrlChange$] = useOldImageOnUrlChange;
+    this[color$] = color;
+    this[filterQuality$] = filterQuality;
+    this[colorBlendMode$] = colorBlendMode;
+    this[placeholderFadeInDuration$] = placeholderFadeInDuration;
+    if (!(imageUrl != null)) dart.assertFailed(null, I[0], 163, 16, "imageUrl != null");
+    if (!(fadeOutDuration != null)) dart.assertFailed(null, I[0], 164, 16, "fadeOutDuration != null");
+    if (!(fadeOutCurve != null)) dart.assertFailed(null, I[0], 165, 16, "fadeOutCurve != null");
+    if (!(fadeInDuration != null)) dart.assertFailed(null, I[0], 166, 16, "fadeInDuration != null");
+    if (!(fadeInCurve != null)) dart.assertFailed(null, I[0], 167, 16, "fadeInCurve != null");
+    if (!(alignment != null)) dart.assertFailed(null, I[0], 168, 16, "alignment != null");
+    if (!(filterQuality != null)) dart.assertFailed(null, I[0], 169, 16, "filterQuality != null");
+    if (!(repeat != null)) dart.assertFailed(null, I[0], 170, 16, "repeat != null");
+    if (!(matchTextDirection != null)) dart.assertFailed(null, I[0], 171, 16, "matchTextDirection != null");
+    cached_image_widget.CachedNetworkImage.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = cached_image_widget.CachedNetworkImage.prototype;
+  dart.addTypeTests(cached_image_widget.CachedNetworkImage);
+  dart.addTypeCaches(cached_image_widget.CachedNetworkImage);
+  dart.setMethodSignature(cached_image_widget.CachedNetworkImage, () => ({
+    __proto__: dart.getMethods(cached_image_widget.CachedNetworkImage.__proto__),
+    createState: dart.fnType(dart.legacy(cached_image_widget.CachedNetworkImageState), [])
+  }));
+  dart.setLibraryUri(cached_image_widget.CachedNetworkImage, I[1]);
+  dart.setFieldSignature(cached_image_widget.CachedNetworkImage, () => ({
+    __proto__: dart.getFields(cached_image_widget.CachedNetworkImage.__proto__),
+    cacheManager: dart.finalFieldType(dart.legacy(cache_manager.BaseCacheManager)),
+    imageUrl: dart.finalFieldType(dart.legacy(core.String)),
+    imageBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(image_provider.ImageProvider$(dart.legacy(core.Object)))]))),
+    placeholder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(core.String)]))),
+    progressIndicatorBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(core.String), dart.legacy(download_progress.DownloadProgress)]))),
+    errorWidget: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(core.String), dart.dynamic]))),
+    placeholderFadeInDuration: dart.finalFieldType(dart.legacy(core.Duration)),
+    fadeOutDuration: dart.finalFieldType(dart.legacy(core.Duration)),
+    fadeOutCurve: dart.finalFieldType(dart.legacy(curves.Curve)),
+    fadeInDuration: dart.finalFieldType(dart.legacy(core.Duration)),
+    fadeInCurve: dart.finalFieldType(dart.legacy(curves.Curve)),
+    width: dart.finalFieldType(dart.legacy(core.double)),
+    height: dart.finalFieldType(dart.legacy(core.double)),
+    fit: dart.finalFieldType(dart.legacy(box_fit.BoxFit)),
+    alignment: dart.finalFieldType(dart.legacy(alignment.AlignmentGeometry)),
+    repeat: dart.finalFieldType(dart.legacy(decoration_image.ImageRepeat)),
+    matchTextDirection: dart.finalFieldType(dart.legacy(core.bool)),
+    httpHeaders: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String)))),
+    useOldImageOnUrlChange: dart.finalFieldType(dart.legacy(core.bool)),
+    color: dart.finalFieldType(dart.legacy(ui.Color)),
+    colorBlendMode: dart.finalFieldType(dart.legacy(ui.BlendMode)),
+    filterQuality: dart.finalFieldType(dart.legacy(ui.FilterQuality))
+  }));
+  cached_image_widget._ImageTransitionHolder = class _ImageTransitionHolder extends core.Object {
+    dispose() {
+      if (this.animationController != null) {
+        this.animationController.dispose();
+        this.animationController = null;
+      }
+    }
+  };
+  (cached_image_widget._ImageTransitionHolder.new = function(opts) {
+    let image = opts && 'image' in opts ? opts.image : null;
+    let progress = opts && 'progress' in opts ? opts.progress : null;
+    let animationController = opts && 'animationController' in opts ? opts.animationController : null;
+    let error = opts && 'error' in opts ? opts.error : null;
+    let curve = opts && 'curve' in opts ? opts.curve : C[3] || CT.C3;
+    this.image = image;
+    this.progress = progress;
+    this.animationController = animationController;
+    this.error = error;
+    this.curve = curve;
+    this.forwardTickerFuture = animationController.forward();
+    ;
+  }).prototype = cached_image_widget._ImageTransitionHolder.prototype;
+  dart.addTypeTests(cached_image_widget._ImageTransitionHolder);
+  dart.addTypeCaches(cached_image_widget._ImageTransitionHolder);
+  dart.setMethodSignature(cached_image_widget._ImageTransitionHolder, () => ({
+    __proto__: dart.getMethods(cached_image_widget._ImageTransitionHolder.__proto__),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(cached_image_widget._ImageTransitionHolder, I[1]);
+  dart.setFieldSignature(cached_image_widget._ImageTransitionHolder, () => ({
+    __proto__: dart.getFields(cached_image_widget._ImageTransitionHolder.__proto__),
+    image: dart.finalFieldType(dart.legacy(file_info.FileInfo)),
+    progress: dart.finalFieldType(dart.legacy(download_progress.DownloadProgress)),
+    animationController: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    error: dart.finalFieldType(dart.legacy(core.Object)),
+    curve: dart.fieldType(dart.legacy(curves.Curve)),
+    forwardTickerFuture: dart.finalFieldType(dart.legacy(ticker.TickerFuture))
+  }));
+  var _imageHolders = dart.privateName(cached_image_widget, "_imageHolders");
+  var _streamBuilderKey = dart.privateName(cached_image_widget, "_streamBuilderKey");
+  var _fileResponseStream = dart.privateName(cached_image_widget, "_fileResponseStream");
+  var _fromMemory = dart.privateName(cached_image_widget, "_fromMemory");
+  var _animatedWidget = dart.privateName(cached_image_widget, "_animatedWidget");
+  var _createFileStream = dart.privateName(cached_image_widget, "_createFileStream");
+  var _disposeImageHolders = dart.privateName(cached_image_widget, "_disposeImageHolders");
+  var _cacheManager = dart.privateName(cached_image_widget, "_cacheManager");
+  var _addImage = dart.privateName(cached_image_widget, "_addImage");
+  var _errorWidget = dart.privateName(cached_image_widget, "_errorWidget");
+  var _transitionWidget = dart.privateName(cached_image_widget, "_transitionWidget");
+  var _placeholder = dart.privateName(cached_image_widget, "_placeholder");
+  var _image = dart.privateName(cached_image_widget, "_image");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(dart.legacy(cached_image_widget.CachedNetworkImage)) {};
+  (State_TickerProviderStateMixin$36.new = function() {
+    ticker_provider.TickerProviderStateMixin$(dart.legacy(cached_image_widget.CachedNetworkImage))[dart.mixinNew].call(this);
+    State_TickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_TickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(dart.legacy(cached_image_widget.CachedNetworkImage)));
+  cached_image_widget.CachedNetworkImageState = class CachedNetworkImageState extends State_TickerProviderStateMixin$36 {
+    build(context) {
+      return this[_animatedWidget]();
+    }
+    initState() {
+      super.initState();
+      this[_createFileStream]();
+    }
+    didUpdateWidget(oldWidget) {
+      T.CachedNetworkImageL().as(oldWidget);
+      if (oldWidget.imageUrl != this.widget.imageUrl) {
+        this[_streamBuilderKey] = new framework.UniqueKey.new();
+        if (!dart.test(this.widget.useOldImageOnUrlChange)) {
+          this[_disposeImageHolders]();
+          this[_imageHolders][$clear]();
+        }
+        this[_createFileStream]();
+      }
+      super.didUpdateWidget(oldWidget);
+    }
+    dispose() {
+      this[_disposeImageHolders]();
+      super.dispose();
+    }
+    [_createFileStream]() {
+      this[_fromMemory] = this[_cacheManager]().getFileFromMemory(this.widget.imageUrl);
+      this[_fileResponseStream] = this[_cacheManager]().getFileStream(this.widget.imageUrl, {headers: this.widget.httpHeaders, withProgress: this.widget.progressIndicatorBuilder != null}).handleError(dart.fn(() => {
+      }, T.VoidToNull()), {test: dart.fn(_ => !dart.test(this.mounted), T.dynamicToboolL())}).where(dart.fn(f => {
+        let t0, t0$, t0$0, t0$1;
+        if (T.FileInfoL().is(f)) {
+          return (t0 = f, t0 == null ? null : t0.originalUrl) != (t0$ = this[_fromMemory], t0$ == null ? null : t0$.originalUrl) || !dart.equals((t0$0 = f, t0$0 == null ? null : t0$0.validTill), (t0$1 = this[_fromMemory], t0$1 == null ? null : t0$1.validTill));
+        }
+        return true;
+      }, T.FileResponseLToboolL()));
+    }
+    [_disposeImageHolders]() {
+      for (let imageHolder of this[_imageHolders]) {
+        imageHolder.dispose();
+      }
+    }
+    [_addImage](opts) {
+      let t1, t0;
+      let image = opts && 'image' in opts ? opts.image : null;
+      let progress = opts && 'progress' in opts ? opts.progress : null;
+      let error = opts && 'error' in opts ? opts.error : null;
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      if (dart.test(this[_imageHolders][$isNotEmpty])) {
+        let lastHolder = this[_imageHolders][$last];
+        if (lastHolder.progress != null && progress != null) {
+          this[_imageHolders][$removeLast]();
+        } else {
+          lastHolder.forwardTickerFuture.then(core.Null, dart.fn(_ => {
+            if (lastHolder.animationController == null) {
+              return;
+            }
+            if (this.widget.fadeOutDuration != null) {
+              lastHolder.animationController.duration = this.widget.fadeOutDuration;
+            } else {
+              lastHolder.animationController.duration = C[0] || CT.C0;
+            }
+            if (this.widget.fadeOutCurve != null) {
+              lastHolder.curve = this.widget.fadeOutCurve;
+            } else {
+              lastHolder.curve = curves.Curves.easeOut;
+            }
+            lastHolder.animationController.reverse().then(core.Null, dart.fn(_ => {
+              this[_imageHolders][$remove](lastHolder);
+              if (dart.test(this.mounted)) this.setState(dart.fn(() => {
+              }, T.VoidToNull()));
+              return null;
+            }, T.voidToNull()));
+          }, T.voidToNull()));
+        }
+      }
+      this[_imageHolders][$add](new cached_image_widget._ImageTransitionHolder.new({image: image, error: error, progress: progress, animationController: new animation_controller.AnimationController.new({vsync: this, duration: (t0 = duration, t0 == null ? (t1 = this.widget.fadeInDuration, t1 == null ? C[2] || CT.C2 : t1) : t0)})}));
+    }
+    [_animatedWidget]() {
+      return new (T.StreamBuilderOfFileResponseL()).new({key: this[_streamBuilderKey], initialData: this[_fromMemory], stream: this[_fileResponseStream], builder: dart.fn((context, snapshot) => {
+          let t0, t0$, t0$0, t3, t2, t1, t0$1;
+          if (dart.test(snapshot.hasError)) {
+            if (dart.test(this[_imageHolders][$isEmpty]) || this[_imageHolders][$last].error == null) {
+              this[_addImage]({image: null, error: snapshot.error});
+            }
+          } else {
+            let fileResponse = snapshot.data;
+            if (fileResponse == null) {
+              if (dart.test(this[_imageHolders][$isEmpty]) || this[_imageHolders][$last].image != null) {
+                let progress = null;
+                if (this.widget.progressIndicatorBuilder != null) {
+                  progress = new download_progress.DownloadProgress.new(this.widget.imageUrl, null, 0);
+                }
+                this[_addImage]({progress: progress, image: null, duration: (t0 = this.widget.placeholderFadeInDuration, t0 == null ? core.Duration.zero : t0)});
+              }
+            } else {
+              if (T.FileInfoL().is(fileResponse)) {
+                if (dart.test(this[_imageHolders][$isEmpty]) || (t0$ = this[_imageHolders][$last].image, t0$ == null ? null : t0$.originalUrl) != fileResponse.originalUrl || !dart.equals((t0$0 = this[_imageHolders][$last].image, t0$0 == null ? null : t0$0.validTill), fileResponse.validTill)) {
+                  this[_addImage]({image: fileResponse, duration: dart.test(this[_imageHolders][$isNotEmpty]) ? null : core.Duration.zero});
+                }
+              }
+              if (T.DownloadProgressL().is(fileResponse)) {
+                this[_addImage]({progress: fileResponse, duration: core.Duration.zero});
+              }
+            }
+          }
+          let children = T.JSArrayOfWidgetL().of([]);
+          for (let holder of this[_imageHolders]) {
+            if (holder.error != null) {
+              children[$add](this[_transitionWidget]({holder: holder, child: this[_errorWidget](context, holder.error)}));
+            } else if (holder.progress != null) {
+              children[$add](this[_transitionWidget]({holder: holder, child: (t0$1 = this.widget, t1 = context, t2 = holder.progress.originalUrl, t3 = holder.progress, t0$1.progressIndicatorBuilder(t1, t2, t3))}));
+            } else if (holder.image == null) {
+              children[$add](this[_transitionWidget]({holder: holder, child: this[_placeholder](context)}));
+            } else {
+              children[$add](this[_transitionWidget]({holder: holder, child: new basic.KeyedSubtree.new({key: new (T.ValueKeyOfString()).new(holder.image.file.path), child: this[_image](context, new image_provider.FileImage.new(holder.image.file)), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7})}));
+            }
+          }
+          return new basic.Stack.new({fit: stack.StackFit.passthrough, alignment: this.widget.alignment, children: children[$toList](), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11});
+        }, T.BuildContextLAndAsyncSnapshotLOfFileResponseLToStackL()), $creationLocationd_0dea112b090073317d4: C[16] || CT.C16});
+    }
+    [_transitionWidget](opts) {
+      let holder = opts && 'holder' in opts ? opts.holder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      return new transitions.FadeTransition.new({opacity: new animations.CurvedAnimation.new({curve: holder.curve, parent: holder.animationController}), child: child, $creationLocationd_0dea112b090073317d4: C[22] || CT.C22});
+    }
+    [_cacheManager]() {
+      let t0;
+      t0 = this.widget.cacheManager;
+      return t0 == null ? cache_manager.DefaultCacheManager.new() : t0;
+    }
+    [_image](context, imageProvider) {
+      let t2, t1, t0;
+      return this.widget.imageBuilder != null ? (t0 = this.widget, t1 = context, t2 = imageProvider, t0.imageBuilder(t1, t2)) : new image.Image.new({image: imageProvider, fit: this.widget.fit, width: this.widget.width, height: this.widget.height, alignment: this.widget.alignment, repeat: this.widget.repeat, color: this.widget.color, colorBlendMode: this.widget.colorBlendMode, matchTextDirection: this.widget.matchTextDirection, filterQuality: this.widget.filterQuality, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26});
+    }
+    [_placeholder](context) {
+      let t2, t1, t0;
+      return this.widget.placeholder != null ? (t0 = this.widget, t1 = context, t2 = this.widget.imageUrl, t0.placeholder(t1, t2)) : new basic.SizedBox.new({width: this.widget.width, height: this.widget.height, $creationLocationd_0dea112b090073317d4: C[38] || CT.C38});
+    }
+    [_errorWidget](context, error) {
+      let t3, t2, t1, t0;
+      return this.widget.errorWidget != null ? (t0 = this.widget, t1 = context, t2 = this.widget.imageUrl, t3 = error, t0.errorWidget(t1, t2, t3)) : this[_placeholder](context);
+    }
+  };
+  (cached_image_widget.CachedNetworkImageState.new = function() {
+    this[_imageHolders] = T.JSArrayOf_ImageTransitionHolderL().of([]);
+    this[_streamBuilderKey] = new framework.UniqueKey.new();
+    this[_fileResponseStream] = null;
+    this[_fromMemory] = null;
+    cached_image_widget.CachedNetworkImageState.__proto__.new.call(this);
+    ;
+  }).prototype = cached_image_widget.CachedNetworkImageState.prototype;
+  dart.addTypeTests(cached_image_widget.CachedNetworkImageState);
+  dart.addTypeCaches(cached_image_widget.CachedNetworkImageState);
+  dart.setMethodSignature(cached_image_widget.CachedNetworkImageState, () => ({
+    __proto__: dart.getMethods(cached_image_widget.CachedNetworkImageState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    didUpdateWidget: dart.fnType(dart.void, [dart.legacy(core.Object)]),
+    [_createFileStream]: dart.fnType(dart.void, []),
+    [_disposeImageHolders]: dart.fnType(dart.void, []),
+    [_addImage]: dart.fnType(dart.void, [], {duration: dart.legacy(core.Duration), error: dart.legacy(core.Object), image: dart.legacy(file_info.FileInfo), progress: dart.legacy(download_progress.DownloadProgress)}, {}),
+    [_animatedWidget]: dart.fnType(dart.legacy(framework.Widget), []),
+    [_transitionWidget]: dart.fnType(dart.legacy(framework.Widget), [], {child: dart.legacy(framework.Widget), holder: dart.legacy(cached_image_widget._ImageTransitionHolder)}, {}),
+    [_cacheManager]: dart.fnType(dart.legacy(cache_manager.BaseCacheManager), []),
+    [_image]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(image_provider.ImageProvider$(dart.legacy(core.Object)))]),
+    [_placeholder]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_errorWidget]: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext), dart.legacy(core.Object)])
+  }));
+  dart.setLibraryUri(cached_image_widget.CachedNetworkImageState, I[1]);
+  dart.setFieldSignature(cached_image_widget.CachedNetworkImageState, () => ({
+    __proto__: dart.getFields(cached_image_widget.CachedNetworkImageState.__proto__),
+    [_imageHolders]: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(cached_image_widget._ImageTransitionHolder)))),
+    [_streamBuilderKey]: dart.fieldType(dart.legacy(key.Key)),
+    [_fileResponseStream]: dart.fieldType(dart.legacy(async.Stream$(dart.legacy(file_response.FileResponse)))),
+    [_fromMemory]: dart.fieldType(dart.legacy(file_info.FileInfo))
+  }));
+  dart.trackLibraries("packages/cached_network_image/src/cached_image_widget.dart", {
+    "package:cached_network_image/src/cached_image_widget.dart": cached_image_widget
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["cached_image_widget.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/cached_network_image/src/cached_image_widget.dart.lib.js"}');
+  // Exports:
+  return {
+    src__cached_image_widget: cached_image_widget
+  };
+}));
+
+//# sourceMappingURL=cached_image_widget.dart.lib.js.map
